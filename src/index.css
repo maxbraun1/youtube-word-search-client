@@ -30,6 +30,7 @@ body {
 
 #root{
   display:flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -221,8 +222,6 @@ footer{
   line-height: 40px;
   background-color:#1d1c1c;
   font-size: 12px;
-  position:absolute;
-  bottom:0;
   text-align: center;
 }
 
