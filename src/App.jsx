@@ -19,7 +19,7 @@ function App() {
     setLoading(true);
     e.preventDefault();
     const videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
-    axios.post("http://localhost:3000/getCaptions", { id: videoID }).then((result)=>{
+    axios.post("https://youtube-word-search-server.onrender.com/getCaptions", { id: videoID }).then((result)=>{
       handleResults(result.data);
     }).catch((error) => {
       setLoading(false);
