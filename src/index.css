@@ -47,6 +47,8 @@ main{
   align-items: center;
   padding:50px;
   min-height:100vh;
+  box-sizing: border-box;
+  position:relative;
 }
 
 h1 {
