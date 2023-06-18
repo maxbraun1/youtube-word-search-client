@@ -69,7 +69,7 @@ function App() {
         error == null ? null : <div className="error">{error}</div>
         }
       </div>
-      
+      <footer>Created by <a target="_blank" href="https://maxbraun.us">Max Braun</a></footer>
     </main>
   )
 }
