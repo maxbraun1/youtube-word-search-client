@@ -41,6 +41,9 @@ function App() {
         <input className="videoTextbox" type="text" placeholder="Video ID" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
         <button className="find" onClick={search}>{ loading ? <img src={spinner} alt="loading" /> : "Find" }</button>
       </form>
+      { words.length > 0 ? null : 
+        <p className="notice">Caption processing server shuts down when not in use, please be patient.</p>
+      }
       { loading ? <div className="results-loader"></div> : null }
 
       <div className="results">
