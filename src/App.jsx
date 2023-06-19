@@ -19,6 +19,7 @@ function App() {
     setLoading(true);
     e.preventDefault();
     const videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
+    console.log(videoID);
     axios.post("https://youtube-word-search-server.onrender.com/getCaptions", { id: videoID }).then((result)=>{
       handleResults(result.data);
     }).catch((error) => {
@@ -38,7 +39,7 @@ function App() {
     <main>
       <img className="logo" src={logo}/>
       <form>
-        <input className="videoTextbox" type="text" placeholder="Video ID" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
+        <input className="videoTextbox" type="text" placeholder="Video URL" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
         <button className="find" onClick={search}>{ loading ? <img src={spinner} alt="loading" /> : "Find" }</button>
       </form>
       { words.length > 0 ? null : 
