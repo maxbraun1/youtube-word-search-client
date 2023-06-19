@@ -23,9 +23,13 @@ function App() {
 
     if(videoURL.includes("&")){
       videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
-    }else{
+    }else if(videoURL.includes("https://youtu.be/")){
+      videoID = videoURL.split('youtu.be/')[1];
+      console.log("Video ID (youtu.be/)", videoID);
+    }
+    else{
       videoID = videoURL.split('v=')[1];
-      console.log("here", videoID);
+      console.log("Video ID (No &)", videoID);
     }
 
     axios.post("https://youtube-word-search-server.onrender.com/getCaptions", { id: videoID }).then((result)=>{
@@ -69,10 +73,10 @@ function App() {
         // Render Results
         words ? words.map((item,index) => {
           if(searchTerm == ""){
-            return(<Word item={item} highestWordCount={highestWordCount} index={index} videoURL={videoURL}></Word>)
+            return(<Word key={index} item={item} highestWordCount={highestWordCount} index={index} videoURL={videoURL}></Word>)
           }else{
             if(item.word.toLowerCase().includes(searchTerm.toLowerCase())){
-              return(<Word item={item} highestWordCount={highestWordCount} index={index} videoURL={videoURL}></Word>)
+              return(<Word key={index} item={item} highestWordCount={highestWordCount} index={index} videoURL={videoURL}></Word>)
             }
           }
         }) : null

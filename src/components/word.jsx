@@ -5,7 +5,6 @@ function Word(props){
     const [open, setOpen] = useState(false);
     
     let item = props.item;
-    let index = props.index;
 
     function offsetToTimeLink(offset){
         let secondsOffset = parseInt(offset / 1000);
@@ -36,7 +35,7 @@ function Word(props){
     }
 
     return(
-        <div className={open ? 'word word-open' : 'word'} key={index}>
+        <div className={open ? 'word word-open' : 'word'}>
             <div className="info" onClick={() => setOpen(!open)}>
                 <div className="bar" style={{ width: parseInt(item.count/props.highestWordCount * 100) + "%"}}></div>
                 <span>{item.word} <span className="count">{item.count}</span></span>
