@@ -18,8 +18,16 @@ function App() {
     setWords([]);
     setLoading(true);
     e.preventDefault();
-    const videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
-    console.log(videoID);
+
+    let videoID;
+
+    if(videoURL.includes("&")){
+      videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
+    }else{
+      videoID = videoURL.split('v=')[1];
+      console.log("here", videoID);
+    }
+
     axios.post("https://youtube-word-search-server.onrender.com/getCaptions", { id: videoID }).then((result)=>{
       handleResults(result.data);
     }).catch((error) => {
