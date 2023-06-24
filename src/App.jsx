@@ -52,7 +52,7 @@ function App() {
   return (
     <>
     <main>
-      <img className="logo" src={logo}/>
+      <img className="logo" src={logo} alt="YouTube Word Search Logo"/>
       <h1 className="site-title">Word Counter and Finder for YouTube Videos</h1>
       <form>
         <input className="videoTextbox" type="text" placeholder="Video URL" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
