@@ -41,4 +41,15 @@
     .videoDetails{
         flex-basis: 60%;
     }
+    .videoDetails h2{
+        font-size: 14px;
+        line-height: 1.2em;
+    }
+    .videoDetails h3{
+        font-size: 12px;
+        color:#b5b5b5;
+    }
+    .videoDetails p{
+        font-size: 12px;
+    }
 }
