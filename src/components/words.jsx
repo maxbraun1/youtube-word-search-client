@@ -15,7 +15,7 @@ function Words(props){
                     if(props.searchTerm == ""){
                         return(<Word key={index} item={item} highestWordCount={highestWordCount} videoURL={props.videoURL}></Word>)
                     }else{
-                        if(item.word.toLowerCase().includes(searchTerm.toLowerCase())){
+                        if(item.word.toLowerCase().includes(props.searchTerm.toLowerCase())){
                         return(<Word key={index} item={item} highestWordCount={highestWordCount} videoURL={props.videoURL}></Word>)
                         }
                     }
