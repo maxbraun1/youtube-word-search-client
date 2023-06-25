@@ -226,6 +226,24 @@ form{
 .dropdown p a:hover{
   background-color: #cf5b5b;
 }
+.backArrow{
+  width: fit-content;
+  height:30px;
+  color:white;
+  display:flex;
+  gap:5px;
+  align-items: center;
+  border-radius:30px;
+  padding:0 10px;
+  transition: background-color .2s linear;
+}
+.backArrow:hover{
+  background-color:rgba(225,225,225,0.1);
+  color:white;
+}
+.backArrow img{
+  height:30px;
+}
 
 @media only screen and (max-width: 768px) {
   main {
