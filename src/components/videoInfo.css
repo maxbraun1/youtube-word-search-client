@@ -33,3 +33,12 @@
     padding:0;
     margin:0;
 }
+
+@media only screen and (max-width: 768px) {
+    .thumbnail{
+        flex-basis: 40%;
+    }
+    .videoDetails{
+        flex-basis: 60%;
+    }
+}
