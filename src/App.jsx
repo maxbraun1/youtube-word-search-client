@@ -72,6 +72,7 @@ function App() {
 
       <div className="results">
         { words.length > 0 ? <a className="backArrow" href="/"><img src={backArrow}/>Back</a> : null}
+        
         { words.length > 0 ? <VideoInfo videoInfo={videoInfo} /> : null }
         {
         // Add Search Bar
