@@ -7,7 +7,7 @@ function Word(props){
     let item = props.item;
 
     function offsetToTimeLink(offset){
-        let secondsOffset = parseInt(offset / 1000);
+        let secondsOffset = Math.floor(offset);
         let minutes = Math.floor(secondsOffset/60).toString();
         let seconds = (secondsOffset % 60).toString();
 
@@ -21,7 +21,7 @@ function Word(props){
     }
 
     function offsetToTimeText(offset){
-        let secondsOffset = parseInt(offset / 1000);
+        let secondsOffset = Math.floor(offset);
         let minutes = Math.floor(secondsOffset/60).toString();
         let seconds = (secondsOffset % 60).toString();
 

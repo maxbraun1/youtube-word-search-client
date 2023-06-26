@@ -20,6 +20,7 @@ function App() {
 
   useEffect(() => {
     if(searchParams.get("videoID")){
+      setVideoURL("https://www.youtube.com/watch?v=" + searchParams.get("videoID"));
       search(searchParams.get("videoID"));
     }
   }, []);
@@ -45,6 +46,7 @@ function App() {
 
     // Get Data from Server
     axios.post(import.meta.env.VITE_SERVER + "/getCaptions", { id: videoID, url: videoURL }).then((result)=>{
+      console.log(result.data);
       handleResults(result.data);
     }).catch((error) => {
       setLoading(false);
@@ -72,7 +74,7 @@ function App() {
 
       <div className="results">
         { words.length > 0 ? <a className="backArrow" href="/"><img src={backArrow}/>Back</a> : null}
-        
+
         { words.length > 0 ? <VideoInfo videoInfo={videoInfo} /> : null }
         {
         // Add Search Bar
