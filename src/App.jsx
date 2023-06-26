@@ -46,7 +46,6 @@ function App() {
 
     // Get Data from Server
     axios.post(import.meta.env.VITE_SERVER + "/getCaptions", { id: videoID, url: videoURL }).then((result)=>{
-      console.log(result.data);
       handleResults(result.data);
     }).catch((error) => {
       setLoading(false);
