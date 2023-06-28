@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from './assets/logo.png';
 import spinner from './assets/spinner.gif';
@@ -17,32 +17,39 @@ function App() {
   const [error, setError] = useState(null);
   const [videoInfo, setVideoInfo] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(searchParams.get("videoID")){
       setVideoURL("https://www.youtube.com/watch?v=" + searchParams.get("videoID"));
       search(searchParams.get("videoID"));
     }
-  }, []);
+  }, [searchParams]);
+
+  function searchSubmit(e){
+    e.preventDefault();
+
+    let videoID;
+
+    // Determine Video ID
+    if(videoURL.includes("&")){
+      videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
+    }else if(videoURL.includes("https://youtu.be/")){
+      videoID = videoURL.split('youtu.be/')[1];
+      console.log("Video ID (youtu.be/)", videoID);
+    }
+    else{
+      videoID = videoURL.split('v=')[1];
+      console.log("Video ID (No &)", videoID);
+    }
+
+    navigate("/?videoID=" + videoID);
+  }
 
   async function search(videoID){
     setError(null);
     setWords([]);
     setLoading(true);
-
-    if(!videoID){
-      // Determine Video ID
-      if(videoURL.includes("&")){
-        videoID = videoURL.substring(videoURL.indexOf("v=") + 1, videoURL.indexOf("&")).replace("=","");
-      }else if(videoURL.includes("https://youtu.be/")){
-        videoID = videoURL.split('youtu.be/')[1];
-        console.log("Video ID (youtu.be/)", videoID);
-      }
-      else{
-        videoID = videoURL.split('v=')[1];
-        console.log("Video ID (No &)", videoID);
-      }
-    }
 
     // Get Data from Server
     axios.post(import.meta.env.VITE_SERVER + "/getCaptions", { id: videoID, url: videoURL }).then((result)=>{
@@ -66,7 +73,7 @@ function App() {
       <h1 className="site-title">Word Counter and Finder for YouTube Videos</h1>
       <form>
         <input className="videoTextbox" type="text" placeholder="Video URL" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
-        <button className="find" onClick={(e) => {e.preventDefault(); search()}}>{ loading ? <img src={spinner} alt="loading" /> : "Find" }</button>
+        <button className="find" onClick={(e) => { searchSubmit(e) }}>{ loading ? <img src={spinner} alt="loading" /> : "Find" }</button>
       </form>
 
       { loading ? <div className="results-loader"></div> : null }
