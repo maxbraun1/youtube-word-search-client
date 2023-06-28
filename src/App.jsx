@@ -71,7 +71,7 @@ function App() {
     <>
     <main>
       <img className="logo" src={logo} alt="YouTube Word Search Logo"/>
-      <h1 className="site-title">YouTube Word Search - Word Counter for YouTube Videos</h1>
+      <h1 className="site-title">YTWordSearch.com - Word Counter for YouTube Videos</h1>
       <form>
         <input className="videoTextbox" type="text" placeholder="Video URL" onChange={(e) => setVideoURL(e.target.value)} value={videoURL}></input>
         <button className="find" onClick={(e) => { searchSubmit(e) }}>{ loading ? <img src={spinner} alt="loading" /> : "Find" }</button>
